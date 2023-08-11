@@ -94,6 +94,7 @@ function showWeather(data) {
     location_weather_title.textContent = name + ", " + country;
     location_hour.textContent = name + ", " + country;
     location_city.value = "";
+    result_box.innerHTML = "";
 
     timezone_offset = timezone;
 
