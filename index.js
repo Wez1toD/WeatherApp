@@ -1,9 +1,10 @@
+const cont_all = document.querySelector(".weather_section__container");
+
 // Weather Search
 const form = document.querySelector(
     ".weather_section__container__c_search form"
 );
 const location_city = document.querySelector("#city");
-const location_country = document.querySelector("#country");
 const location_weather_title = document.querySelector(
     ".weather_section__container__weather_title h3"
 );
@@ -37,6 +38,10 @@ let timezone_offset = 0;
 const time_am = document.getElementById("time_am");
 const time_pm = document.getElementById("time_pm");
 
+// Search autocomplete
+const result_box = document.getElementById("result_box");
+
+// Form Function
 form.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -58,6 +63,7 @@ function ShowError(message) {
 }
 
 function GetWeather(location_name) {
+    cont_all.classList.add("loading");
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${location_name}&appid=${api_key}&units=metric&lang=es`;
     fetch(url)
         .then((data) => {
@@ -65,15 +71,17 @@ function GetWeather(location_name) {
         })
         .then((dataJSON) => {
             if (dataJSON.cod == "404") {
+                cont_all.classList.remove("loading");
                 ShowError("Ciudad no encontrada.");
                 return;
             }
-
+            setTimeout(() => {
+                cont_all.classList.remove("loading");
+            }, 400);
             showWeather(dataJSON);
         });
 }
 function showWeather(data) {
-    console.log(data);
     const {
         name,
         main: { temp, temp_min, temp_max, humidity },
@@ -99,6 +107,7 @@ function showWeather(data) {
     wind_element.textContent = speed;
 }
 
+// Time
 setInterval(() => {
     let s = new Date().getUTCSeconds();
     let m = new Date().getUTCMinutes();
@@ -139,3 +148,42 @@ setInterval(() => {
     niddle_mm.style.transform = `rotateZ(${m * 6}deg)`;
     niddle_hh.style.transform = `rotateZ(${h * 30}deg)`;
 });
+
+// Search Autocomplete
+function SearchAutocomplete() {
+    let results = [];
+    let location_name = location_city.value;
+    if (location_name.length) {
+        results = arrayLocations.filter((keyword) => {
+            return keyword.toLowerCase().includes(location_name.toLowerCase());
+        });
+    }
+    DisplayAutoComplete(results);
+    if (!results.length) {
+        result_box.innerHTML = "";
+    }
+}
+location_city.addEventListener("keyup", SearchAutocomplete);
+window.addEventListener("click", function (e) {
+    if (!form.contains(e.target)) {
+        result_box.innerHTML = "";
+    }
+});
+location_city.addEventListener("click", SearchAutocomplete);
+
+function DisplayAutoComplete(result) {
+    const content = [];
+
+    for (let i = 0; i < 10; i++) {
+        const element = result[i];
+        if (element) {
+            content.push("<li onclick=SelectOption(this)>" + element + "</li>");
+        }
+    }
+
+    result_box.innerHTML = "<ul>" + content.join("") + "</ul>";
+}
+function SelectOption(element) {
+    result_box.innerHTML = "";
+    GetWeather(element.textContent);
+}

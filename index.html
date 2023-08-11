@@ -26,9 +26,35 @@
     </head>
     <body>
         <header class="d-flex">
-            <div class="d-flex">
+            <div class="d-flex logo_cont">
                 <img src="./images/logo2.png" alt="Logo Weather App" />
                 <h1>EcoClima</h1>
+            </div>
+            <div class="d-flex about">
+                <h2>Wilver Zuñiga</h2>
+                <div class="social">
+                    <ul class="d-flex">
+                        <li>
+                            <a href="https://github.com/Wez1toD" target="_blank"
+                                ><i class="fa-brands fa-github"></i
+                            ></a>
+                        </li>
+                        <li>
+                            <a
+                                href="https://www.linkedin.com/in/wilver-emanuel-zu%C3%B1iga-arca-9b5081233/"
+                                target="_blank"
+                                ><i class="fa-brands fa-linkedin"></i
+                            ></a>
+                        </li>
+                        <li>
+                            <a
+                                href="https://www.instagram.com/wezitodev/"
+                                target="_blank"
+                                ><i class="fa-brands fa-square-instagram"></i
+                            ></a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </header>
         <main>
@@ -60,7 +86,7 @@
                             <form>
                                 <input
                                     autocomplete="off"
-                                    placeholder="Ingrese una localización"
+                                    placeholder='Ingrese un lugar. Ej: "city, country"'
                                     type="text"
                                     name=""
                                     id="city"
@@ -68,11 +94,12 @@
                                 <button>
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </button>
+                                <div id="result_box"></div>
                             </form>
                         </div>
                         <div class="weather_section__container__c_hour d-flex">
                             <h3 style="text-align: center">
-                                <span id="location_hour">Localización</span>
+                                <span id="location_hour">UTC</span>
                             </h3>
                             <div
                                 class="weather_section__container__c_hour_clock"
