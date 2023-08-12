@@ -31,6 +31,9 @@ a {
 .d-flex {
     display: flex;
 }
+.d-none {
+    display: none;
+}
 /* #region Header */
 /* Header */
 header {

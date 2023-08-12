@@ -98,9 +98,17 @@ function showWeather(data) {
 
     timezone_offset = timezone;
 
-    weather_icon.src = `https://openweathermap.org/img/wn/${arr.icon}@2x.png`;
-    weather_desc.textContent =
+    weather_description_data =
         arr.description.charAt(0).toUpperCase() + arr.description.slice(1);
+
+    if (weather_icon.classList.contains("d-none"))
+        weather_icon.classList.remove("d-none");
+
+    weather_icon.src = `https://openweathermap.org/img/wn/${arr.icon}@2x.png`;
+    weather_icon.alt = weather_description_data;
+    weather_icon.title = weather_description_data;
+
+    weather_desc.textContent = weather_description_data;
     temp_element.textContent = temp;
     max_temp_element.textContent = temp_max;
     min_temp_element.textContent = temp_min;
