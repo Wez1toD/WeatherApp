@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>EcoClima</title>
+        <title>
+            EcoClima - Pronóstico y Hora Local | Consulta el Clima y la Hora de
+            Cualquier Lugar
+        </title>
         <!-- Metadatos -->
         <meta name="author" content="Emanuel Zuñiga Arca" />
         <meta
             name="description"
-            content="Aplicacion Web que muestra las condiciones climáticas y la hora del lugar que se indique."
+            content="Obtén instantáneamente el pronóstico del tiempo y la hora local en EcoClima. Ingresa tu ubicación y descubre la temperatura, condiciones climáticas y hora exacta. ¡Planifica tu día con precisión"
         />
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -83,7 +86,12 @@
                         <div
                             class="d-flex weather_section__container__weather_data"
                         >
-                            <img id="weather_icon" class="d-none" />
+                            <img
+                                id="weather_icon"
+                                class="d-none"
+                                title="Descripcion del clima"
+                                alt="Descripcion del clima"
+                            />
                             <p id="weather_desc"></p>
                             <h3><span id="temp">00</span>°C</h3>
                             <p>Max: <span id="max_temp">00</span>°C</p>
